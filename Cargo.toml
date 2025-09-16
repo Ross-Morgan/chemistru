@@ -2,6 +2,10 @@
 resolver = "3"
 members = ["chemistru-elements", "chemistru-elements-inner", "chemistru-elements-macro", "chemistru-modelling", "chemistru-subatomic"]
 
+[profile.dev]
+codegen-units = 16
+opt-level = 1
+
 [profile.release]
 codegen-units = 1
 lto = "fat"
