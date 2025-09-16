@@ -12,7 +12,6 @@ license = "BSD-3-Clause"
 keywords = ["chemistry", "elements"]
 categories = ["science"]
 
-
 [lints]
 workspace = true
 
