@@ -15,7 +15,7 @@ pub fn generate_elements_consts(_: TokenStream) -> TokenStream {
         stream.extend(generate_const_init(element));
     }
 
-    TokenStream::from(stream)
+    stream
 }
 
 fn generate_const_init(element: &Element) -> TokenStream {

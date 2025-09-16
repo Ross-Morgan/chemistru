@@ -126,7 +126,7 @@ impl ToTokens for Category {
                 tokens.extend(quote! { ::chemistru_elements::data::misc::Category::Unknown { predicted: ::std::boxed::Box::new(#inner_variant) }});
             }
             _ => {
-                tokens.extend(quote! { ::chemistru_elements::data::misc::Category::#variant_name })
+                tokens.extend(quote! { ::chemistru_elements::data::misc::Category::#variant_name });
             }
         }
     }
