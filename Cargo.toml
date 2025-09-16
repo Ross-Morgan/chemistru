@@ -16,4 +16,6 @@ opt-level = 3
 missing_const_for_fn = "deny"
 pedantic = "deny"
 unwrap_used = "deny"
+
+[workspace.lints.rust]
 unsafe_code = "forbid"
