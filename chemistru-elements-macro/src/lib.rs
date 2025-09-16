@@ -8,7 +8,6 @@ use quote::quote;
 pub fn generate_elements_consts(_: TokenStream) -> TokenStream {
     let elements = ELEMENTS.iter();
 
-    // let mut stream = TokenStream2::new();
     let mut stream = TokenStream::new();
 
     for element in elements {
