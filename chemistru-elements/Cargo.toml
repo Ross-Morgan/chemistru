@@ -20,7 +20,7 @@ workspace = true
 
 [features]
 default = []
-macros = ["chemistru-elements-macro", "chemistru-elements-inner/to_tokens"]
+constants = ["chemistru-elements-macro", "chemistru-elements-inner/to_tokens"]
 
 [dependencies]
 chemistru-elements-inner = { path = "../chemistru-elements-inner/" }
