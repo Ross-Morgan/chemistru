@@ -42,11 +42,13 @@ pub struct RawElement {
 
 impl RawElement {
     pub fn sanitise(self) -> Element {
-        let ionization_energies = if self.ionization_energies.is_empty() {
-            None
-        } else {
-            Some(self.ionization_energies)
+        let ionization_energies: Option<&'static [f64]> = match self.ionization_energies.is_empty()
+        {
+            true => None,
+            false => Some(Box::new(self.ionization_energies).leak()),
         };
+
+        let shells = Box::new(self.shells).leak();
 
         let atomic_data = AtomicData {
             atomic_mass: self.atomic_mass,
@@ -67,7 +69,7 @@ impl RawElement {
             affinity: self.electron_affinity,
             electronegativity: self.electronegativity_pauling,
             ionization_energies,
-            shells: self.shells,
+            shells,
         };
 
         let table_data = TableData {

@@ -91,14 +91,15 @@ use crate::{
 use std::fmt::Display;
 use std::sync::LazyLock;
 
+/// `LazyLock`-wrapped vector of [`Element`]s
 #[rustfmt::skip]
 pub static ELEMENTS: LazyLock<Vec<Element>> = LazyLock::new(|| {
     let raw_elements: Vec<RawElement> = serde_json::from_str(include_str!("../db.json")).expect("Failed to load json data");
     raw_elements.iter().map(|e| e.clone().sanitise()).collect()
 });
 
-/// Basic elemental representation containing a variety of pieces of data about that element.
-#[derive(Clone, Debug, PartialEq, PartialOrd)]
+/// Basic elemental representation containing data about that element.
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct Element {
     pub(crate) name: &'static str,
     pub(crate) symbol: &'static str,
