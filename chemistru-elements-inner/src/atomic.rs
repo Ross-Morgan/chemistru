@@ -1,6 +1,6 @@
 use intentional::CastFrom;
 
-#[derive(Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct AtomicData {
     pub(crate) atomic_mass: f64,
     pub(crate) atomic_number: u8,

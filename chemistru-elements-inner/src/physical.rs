@@ -1,4 +1,4 @@
-#[derive(Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct PhysicalData {
     pub(crate) boiling_point: Option<f64>,
     pub(crate) melting_point: Option<f64>,

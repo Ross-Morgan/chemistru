@@ -1,6 +1,6 @@
 use strum_macros::IntoStaticStr;
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct MiscData {
     pub(crate) appearance: Option<&'static str>,
     pub(crate) category: Category,
@@ -70,7 +70,7 @@ impl MiscData {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, IntoStaticStr)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, IntoStaticStr)]
 pub enum Category {
     DiatomicNonmetal,
     NobleGas,
@@ -82,7 +82,7 @@ pub enum Category {
     TransitionMetal,
     Lanthanide,
     Actinide,
-    Unknown { predicted: Box<Category> },
+    Unknown,
 }
 
 impl From<&str> for Category {
@@ -98,39 +98,7 @@ impl From<&str> for Category {
             "transition metal" => Self::TransitionMetal,
             "lanthanide" => Self::Lanthanide,
             "actinide" => Self::Actinide,
-            s => {
-                if s.starts_with("unknown") {
-                    let inner = if s.contains("diatomic nonmetal") {
-                        Self::DiatomicNonmetal
-                    } else if s.contains("noble gas") {
-                        Self::NobleGas
-                    } else if s.contains("alkali metal") {
-                        Self::AlkaliMetal
-                    } else if s.contains("alkaline earth metal") {
-                        Self::AlkalineEarthMetal
-                    } else if s.contains("metalloid") {
-                        Self::Metalloid
-                    } else if s.contains("polyatomic nonmetal") {
-                        Self::PolyatomicNonmetal
-                    } else if s.contains("post-transition metal") {
-                        Self::PostTransitionMetal
-                    } else if s.contains("transition metal") {
-                        Self::TransitionMetal
-                    } else if s.contains("lanthanide") {
-                        Self::Lanthanide
-                    } else if s.contains("actinide") {
-                        Self::Actinide
-                    } else {
-                        panic!("Unrecognised element category '{s}'");
-                    };
-
-                    Self::Unknown {
-                        predicted: Box::new(inner),
-                    }
-                } else {
-                    panic!("Unrecognised element category '{s}'")
-                }
-            }
+            _ => Self::Unknown,
         }
     }
 }

@@ -2,13 +2,13 @@ use std::fmt::Display;
 
 use const_panic::concat_panic;
 
-#[derive(Clone, Debug, PartialEq, PartialOrd)]
+#[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct ElectronData {
     pub(crate) configuration: ElectronConfiguration,
     pub(crate) affinity: Option<f64>,
     pub(crate) electronegativity: Option<f64>,
-    pub(crate) ionization_energies: Option<Vec<f64>>,
-    pub(crate) shells: Vec<u8>,
+    pub(crate) ionization_energies: Option<&'static [f64]>,
+    pub(crate) shells: &'static [u8],
 }
 
 impl ElectronData {
@@ -28,13 +28,13 @@ impl ElectronData {
     }
 
     #[must_use]
-    pub fn ionization_energies(&self) -> Option<&[f64]> {
-        self.ionization_energies.as_deref()
+    pub const fn ionization_energies(&self) -> Option<&[f64]> {
+        self.ionization_energies
     }
 
     #[must_use]
-    pub fn shells(&self) -> &[u8] {
-        &self.shells
+    pub const fn shells(&self) -> &[u8] {
+        self.shells
     }
 
     #[must_use]
@@ -42,8 +42,8 @@ impl ElectronData {
         configuration: ElectronConfiguration,
         affinity: Option<f64>,
         electronegativity: Option<f64>,
-        ionization_energies: Option<Vec<f64>>,
-        shells: Vec<u8>,
+        ionization_energies: Option<&'static [f64]>,
+        shells: &'static [u8],
     ) -> Self {
         Self {
             configuration,
@@ -55,10 +55,10 @@ impl ElectronData {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct ElectronConfiguration(&'static [Suborbital]);
 
-#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Suborbital(u8, u8, u8);
 
 impl From<&str> for ElectronConfiguration {
