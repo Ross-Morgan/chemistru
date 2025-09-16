@@ -1511,7 +1511,7 @@ dependencies = [
 
 [[package]]
 name = "chemistru-elements"
-version = "1.0.1"
+version = "1.1.0"
 dependencies = [
  "chemistru-elements-inner",
  "chemistru-elements-macro",
@@ -1519,7 +1519,7 @@ dependencies = [
 
 [[package]]
 name = "chemistru-elements-inner"
-version = "1.0.1"
+version = "1.1.0"
 dependencies = [
  "const_panic",
  "intentional",
@@ -1532,14 +1532,10 @@ dependencies = [
 
 [[package]]
 name = "chemistru-elements-macro"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "chemistru-elements-inner",
- "proc-macro2",
  "quote",
- "serde",
- "serde_json",
- "syn 2.0.106",
 ]
 
 [[package]]
@@ -4647,7 +4643,6 @@ version = "1.0.145"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "402a6f66d8c709116cf22f558eab210f5a50187f702eb4d7e5ef38d9a7f1c79c"
 dependencies = [
- "indexmap 2.11.3",
  "itoa",
  "memchr",
  "ryu",
