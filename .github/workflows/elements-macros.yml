@@ -1,0 +1,35 @@
+name: Rust
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: "-Dwarnings"
+
+jobs:
+  clippy_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run clippy
+        run: cargo clippy -p chemistru-elements-macros --no-deps --all-features --all-targets
+
+  formatting_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Run Formatting
+        run: cargo fmt -p chemistru-elements-macros --verbose
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build
+        run: cargo build -p chemistru-elements-macros --verbose
+      - name: Run tests
+        run: cargo test -p chemistru-elements-macros --verbose
