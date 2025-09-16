@@ -47,7 +47,7 @@ impl ToTokens for ElectronData {
             .ionization_energies
             .clone()
             .map(|v| quote! { &'static [ #(#v),* ] });
-        let shells = self.shells.clone();
+        let shells = self.shells;
         let shells = quote! { &'static [ #(#shells),* ] };
 
         tokens.extend(quote! {
@@ -120,14 +120,6 @@ impl ToTokens for Category {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let variant_name: &'static str = self.into();
 
-        match self {
-            Self::Unknown { predicted } => {
-                let inner_variant = predicted.as_ref().clone();
-                tokens.extend(quote! { ::chemistru_elements::data::misc::Category::Unknown { predicted: ::std::boxed::Box::new(#inner_variant) }});
-            }
-            _ => {
-                tokens.extend(quote! { ::chemistru_elements::data::misc::Category::#variant_name });
-            }
-        }
+        tokens.extend(quote! { ::chemistru_elements::data::misc::Category::#variant_name });
     }
 }
