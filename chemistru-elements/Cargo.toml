@@ -2,7 +2,7 @@
 name = "chemistru-elements"
 description = "Basic Elemental Representation"
 readme = "README.md"
-homepage = "https://github.com/Ross-Morgan/chemistru"
+homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements"
 repository = "https://github.com/Ross-Morgan/chemistru"
 
 version = "1.0.1"

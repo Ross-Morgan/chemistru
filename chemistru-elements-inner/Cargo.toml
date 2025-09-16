@@ -2,8 +2,8 @@
 name = "chemistru-elements-inner"
 description = "Basic Elemental Representation"
 readme = "README.md"
-homepage = "https://github.com/Ross-Morgan/chemistru-elements"
-repository = "https://github.com/Ross-Morgan/chemistru-elements-inner"
+homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements-inner"
+repository = "https://github.com/Ross-Morgan/chemistru"
 
 
 version = "1.0.1"
