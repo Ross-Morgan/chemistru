@@ -23,11 +23,11 @@ pub use chemistru_elements_inner::ELEMENTS;
 pub use chemistru_elements_inner::Element;
 pub use chemistru_elements_inner::utils;
 
-cfg_if::cfg_if! {
-    if #[cfg(feature = "constants")] {
-        use chemistru_elements_macro::generate_elements;
-        generate_elements!();
-    }
+#[cfg(feature = "constants")]
+use chemistru_elements_macro::generate_elements;
+#[cfg(feature = "constants")]
+pub mod elements {
+    generate_elements!();
 }
 
 pub mod prelude {

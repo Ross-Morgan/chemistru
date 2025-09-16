@@ -23,6 +23,5 @@ default = []
 constants = ["chemistru-elements-macro", "chemistru-elements-inner/to_tokens"]
 
 [dependencies]
-cfg-if = "1.0.3"
 chemistru-elements-inner = { path = "../chemistru-elements-inner/" }
 chemistru-elements-macro = { path = "../chemistru-elements-macro/", optional = true }
