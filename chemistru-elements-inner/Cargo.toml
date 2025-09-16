@@ -2,22 +2,27 @@
 name = "chemistru-elements-inner"
 description = "Basic Elemental Representation"
 readme = "README.md"
-homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements-inner"
+documentation = "https://docs.rs/chemistru-elements-inner"
 repository = "https://github.com/Ross-Morgan/chemistru"
+homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements-inner"
 
-version = "1.0.1"
+version = "1.1.0"
 edition = "2024"
 license = "BSD-3-Clause"
 
 keywords = ["chemistry", "elements"]
 categories = ["science"]
 
+authors = ["Ross Morgan"]
+
+include = ["/src", "db.json"]
+
 [lints]
 workspace = true
 
 [features]
 default = []
-to_tokens = ["dep:quote", "dep:proc-macro2"]
+to_tokens = ["quote", "proc-macro2"]
 
 [dependencies]
 intentional = "0.1.1"
