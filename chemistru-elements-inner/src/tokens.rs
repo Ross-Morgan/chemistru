@@ -14,11 +14,11 @@ impl ToTokens for Element {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let name = self.name;
         let symbol = self.symbol;
-        let atomic_data = self.atomic_data.clone();
-        let electron_data = self.electron_data.clone();
-        let physical_data = self.physical_data.clone();
+        let atomic_data = self.atomic_data;
+        let electron_data = self.electron_data;
+        let physical_data = self.physical_data;
         let table_data = self.table_data;
-        let misc_data = self.misc_data.clone();
+        let misc_data = self.misc_data;
 
         tokens.extend(quote! {
             ::chemistru_elements::Element::new(#name, #symbol, #atomic_data, #electron_data, #physical_data, #table_data, #misc_data)
@@ -40,12 +40,11 @@ impl ToTokens for AtomicData {
 
 impl ToTokens for ElectronData {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let configuration = self.configuration.clone();
+        let configuration = self.configuration;
         let affinity = self.affinity;
         let electronegativity = self.electronegativity;
         let ionization_energies = self
             .ionization_energies
-            .clone()
             .map(|v| quote! { &'static [ #(#v),* ] });
         let shells = self.shells;
         let shells = quote! { &'static [ #(#shells),* ] };
@@ -103,7 +102,7 @@ impl ToTokens for TableData {
 impl ToTokens for MiscData {
     fn to_tokens(&self, tokens: &mut TokenStream) {
         let appearance = self.appearance;
-        let category = self.category.clone();
+        let category = self.category;
         let discovered_by = self.discovered_by;
         let named_by = self.named_by;
         let spectral_img = self.spectral_img;
