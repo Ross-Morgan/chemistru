@@ -1,4 +1,4 @@
-name: Rust
+name: chemistru-elements-inner
 
 on:
   push:
