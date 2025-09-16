@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-chemistru-elements = { path = "../chemistru-elements/" }
+# chemistru-elements = { path = "../chemistru-elements/" }
 
 terminable_threads = "0.2.1"
 
