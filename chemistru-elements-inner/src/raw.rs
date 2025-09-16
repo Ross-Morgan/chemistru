@@ -42,11 +42,7 @@ pub struct RawElement {
 
 impl RawElement {
     pub fn sanitise(self) -> Element {
-        let ionization_energies: Option<&'static [f64]> = match self.ionization_energies.is_empty()
-        {
-            true => None,
-            false => Some(Box::new(self.ionization_energies).leak()),
-        };
+        let ionization_energies: Option<&'static [f64]> = if self.ionization_energies.is_empty() { None } else { Some(Box::new(self.ionization_energies).leak()) };
 
         let shells = Box::new(self.shells).leak();
 
