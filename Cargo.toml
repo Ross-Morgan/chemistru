@@ -1,9 +1,10 @@
 [workspace]
 resolver = "3"
-members = ["chemistru-elements", "chemistru-elements-inner", "chemistru-elements-macro", "chemistru-modelling", "chemistru-subatomic"]
+members = ["chemistru-elements", "chemistru-elements-inner", "chemistru-elements-macro", "chemistru-subatomic"]
+exclude = ["chemistru-modelling"]
 
 [profile.dev]
-codegen-units = 16
+codegen-units = 256
 opt-level = 1
 
 [profile.release]
