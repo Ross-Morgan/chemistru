@@ -12,20 +12,9 @@ env:
 
 jobs:
   clippy_check:
-    strategy:
-      matrix:
-        package:
-          [
-            chemistru-elements,
-            chemistru-elements-inner,
-            chemistru-elements-macro,
-          ]
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: cd into package
-        run: cd ${{ matrix.package }}
       - name: Run clippy
         run: cargo clippy --no-deps --all-features --all-targets
 
