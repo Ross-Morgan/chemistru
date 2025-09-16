@@ -5,14 +5,13 @@ readme = "README.md"
 homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements-inner"
 repository = "https://github.com/Ross-Morgan/chemistru"
 
-
 version = "1.0.1"
 edition = "2024"
+license = "BSD-3-Clause"
 
 keywords = ["chemistry", "elements"]
 categories = ["science"]
 
-license = "GPL-3.0"
 
 [lints]
 workspace = true
