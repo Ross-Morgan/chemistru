@@ -9,7 +9,7 @@ use quote::quote;
 /// # Examples
 ///
 /// ```
-/// # use chemistru_element_macro::generate_elements;
+/// # use chemistru_elements_macro::generate_elements;
 /// mod elements {
 ///     generate_elements!();
 /// }
