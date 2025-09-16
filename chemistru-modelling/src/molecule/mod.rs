@@ -1,12 +1,12 @@
 pub mod graph;
 pub mod id;
 
+use graph::UnGraph;
 use std::{collections::HashMap, num::NonZeroU8};
 
-use chemistru_elements::Element;
-use graph::UnGraph;
-
 use self::id::{EdgeID, NodeID};
+
+pub struct Element;
 
 #[derive(Copy, Clone, Debug, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct CovalentBond(NonZeroU8);
