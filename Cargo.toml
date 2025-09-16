@@ -1,0 +1,14 @@
+[workspace]
+resolver = "3"
+members = ["chemistru-elements", "chemistru-elements-inner", "chemistru-elements-macro", "chemistru-modelling", "chemistru-subatomic"]
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
+
+[workspace.lints.clippy]
+missing_const_for_fn = "deny"
+pedantic = "deny"
+unwrap_used = "deny"
+unsafe_code = "forbid"

@@ -1,0 +1,31 @@
+[package]
+name = "chemistru-elements-macro"
+description = "Procedural macro generating constants for every element"
+readme = "README.md"
+documentation = "https://docs.rs/chemistru-macro-api"
+repository = "https://github.com/Ross-Morgan/chemistru-macro-constants"
+
+version = "0.1.0"
+edition = "2024"
+license = "BSD-3-Clause"
+
+authors = ["Ross Morgan"]
+
+keywords = ["chemistry", "chemical", "elements"]
+categories = ["sciences"]
+
+[lints]
+workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+
+proc-macro2 = "1.0.69"
+quote = "1.0.33"
+serde = { version = "1.0.224", features = ["derive"] }
+serde_json = { version = "1.0.145", features = ["preserve_order"] }
+syn = "2.0.38"
+
+chemistru-elements-inner = { path = "../chemistru-elements-inner/", features = ["to_tokens"] }

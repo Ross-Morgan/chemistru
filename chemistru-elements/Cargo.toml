@@ -1,0 +1,26 @@
+[package]
+name = "chemistru-elements"
+description = "Basic Elemental Representation"
+readme = "README.md"
+homepage = "https://github.com/Ross-Morgan/chemistru"
+repository = "https://github.com/Ross-Morgan/chemistru"
+
+version = "1.0.1"
+edition = "2024"
+license = "BSD-3-Clause"
+
+authors = ["Ross Morgan"]
+
+keywords = ["chemistry", "chemical", "elements"]
+categories = ["science"]
+
+[lints]
+workspace = true
+
+[features]
+default = []
+macros = ["chemistru-elements-macro", "chemistru-elements-inner/to_tokens"]
+
+[dependencies]
+chemistru-elements-inner = { path = "../chemistru-elements-inner/" }
+chemistru-elements-macro = { path = "../chemistru-elements-macro/", optional = true }
