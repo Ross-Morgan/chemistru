@@ -1,3 +1,24 @@
+//! # Chemistru Elements
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+//!
+
 pub use chemistru_elements_inner::ELEMENTS;
 pub use chemistru_elements_inner::Element;
 pub use chemistru_elements_inner::utils;
