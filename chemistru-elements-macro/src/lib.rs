@@ -5,17 +5,6 @@ use proc_macro::TokenStream;
 use quote::{format_ident, quote};
 
 /// Generate a constant for each element
-///
-/// # Examples
-///
-/// ```
-/// mod elements {
-/// # use crate::generate_elements;
-///     generate_elements!();
-/// }
-///
-/// let hydrogen = elements::HYDROGEN;
-/// ```
 #[proc_macro]
 pub fn generate_elements(_: TokenStream) -> TokenStream {
     let elements = ELEMENTS.iter();
