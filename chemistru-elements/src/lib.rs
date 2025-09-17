@@ -28,9 +28,9 @@ pub mod data {
     pub use chemistru_elements_inner::{
         atomic::AtomicData,
         electron::{ElectronConfiguration, ElectronData, Suborbital},
-        misc::{Category, MiscData},
-        physical::PhysicalData,
-        table::TableData,
+        misc::MiscData,
+        physical::{Phase, PhysicalData},
+        table::{Category, TableData},
     };
 }
 
