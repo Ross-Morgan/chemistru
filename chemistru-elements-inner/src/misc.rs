@@ -10,31 +10,37 @@ pub struct MiscData {
 }
 
 impl MiscData {
+    /// Short description of colour
     #[must_use]
     pub const fn appearance(&self) -> Option<&'static str> {
         self.appearance
     }
 
+    /// Name of person or institution that discovered the element
     #[must_use]
     pub const fn discovered_by(&self) -> Option<&'static str> {
         self.discovered_by
     }
 
+    /// Name of person or institution that named the element
     #[must_use]
     pub const fn named_by(&self) -> Option<&'static str> {
         self.named_by
     }
 
+    /// Wikimedia url to page containing image of spectrum (not direct link to image)
     #[must_use]
     pub const fn spectral_image_url(&self) -> Option<&'static str> {
         self.spectral_img
     }
 
+    /// Wikipedia page of element
     #[must_use]
     pub const fn source(&self) -> &'static str {
         self.source
     }
 
+    /// Conventional ball-and-stick colour for element
     #[must_use]
     pub const fn cpk_color(&self) -> Option<&'static str> {
         self.cpk_color

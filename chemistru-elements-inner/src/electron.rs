@@ -18,21 +18,25 @@ impl ElectronData {
         &self.configuration
     }
 
+    /// Electron affinity in kJ/mol
     #[must_use]
     pub const fn electron_affinity(&self) -> Option<f64> {
         self.affinity
     }
 
+    /// Pauling scale electronegativity
     #[must_use]
     pub const fn electronegativity(&self) -> Option<f64> {
         self.electronegativity
     }
 
+    /// Ionisation energies in kJ/mol
     #[must_use]
-    pub const fn ionization_energies(&self) -> Option<&[f64]> {
+    pub const fn ionisation_energies(&self) -> Option<&[f64]> {
         self.ionization_energies
     }
 
+    /// Ascending-energy simplified electron shells
     #[must_use]
     pub const fn shells(&self) -> &[u8] {
         self.shells
@@ -56,9 +60,11 @@ impl ElectronData {
     }
 }
 
+/// Collection of [`Suborbital`]s
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct ElectronConfiguration(&'static [Suborbital]);
 
+/// A single energy level
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Suborbital(u8, u8, u8);
 
@@ -105,31 +111,37 @@ impl From<&str> for ElectronConfiguration {
 }
 
 impl Suborbital {
+    /// First number in suborbital representation
     #[must_use]
     pub const fn principal_quantum_number(&self) -> u8 {
         self.0
     }
 
+    /// Number represeting the letter in suborbital representation
     #[must_use]
     pub const fn azimuthal_quantum_number(&self) -> u8 {
         self.1
     }
 
+    /// Letter in suborbital representation
     #[must_use]
     pub const fn block(&self) -> char {
         azimuthal_number_to_char(self.1)
     }
 
+    /// Last number in suborbital representation
     #[must_use]
     pub const fn electron_number(&self) -> u8 {
         self.2
     }
 
+    /// String representation with superscript electron numbers
     #[must_use]
     pub fn to_string_stylized(&self) -> String {
         self.to_string()
     }
 
+    /// String representation using only ascii characters
     #[must_use]
     pub fn to_string_nonstylized(&self) -> String {
         format!("{}{}{}", self.0, azimuthal_number_to_char(self.1), self.2)
@@ -180,6 +192,7 @@ impl ElectronConfiguration {
     }
 }
 
+/// Number to superscript string
 fn to_superscript(n: u8) -> String {
     const SUPERSCRIPT: [char; 10] = ['⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'];
 
@@ -206,6 +219,7 @@ fn to_superscript(n: u8) -> String {
     }
 }
 
+/// Translates azimuthal number to respective block letter
 const fn azimuthal_number_to_char(n: u8) -> char {
     match n {
         0 => 's',

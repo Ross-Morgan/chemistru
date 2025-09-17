@@ -11,21 +11,25 @@ pub struct PhysicalData {
 }
 
 impl PhysicalData {
+    /// Density in g/cm³
     #[must_use]
     pub const fn density(&self) -> Option<f64> {
         self.density
     }
 
+    /// Boiling point in K
     #[must_use]
     pub const fn boiling_point(&self) -> Option<f64> {
         self.boiling_point
     }
 
+    /// Melting point in K
     #[must_use]
     pub const fn melting_point(&self) -> Option<f64> {
         self.melting_point
     }
 
+    /// Heat capacity in J/(K⋅mol)
     #[must_use]
     pub const fn molar_heat_capacity(&self) -> Option<f64> {
         self.molar_heat_capacity
