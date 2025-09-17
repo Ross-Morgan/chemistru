@@ -6,7 +6,7 @@ documentation = "https://docs.rs/chemistru-elements-inner"
 repository = "https://github.com/Ross-Morgan/chemistru"
 homepage = "https://github.com/Ross-Morgan/chemistru/tree/main/chemistru-elements-inner"
 
-version = "1.1.0"
+version = "1.1.1"
 edition = "2024"
 license = "BSD-3-Clause"
 
@@ -14,8 +14,6 @@ keywords = ["chemistry", "elements"]
 categories = ["science"]
 
 authors = ["Ross Morgan"]
-
-include = ["/src", "db.json"]
 
 [lints]
 workspace = true
