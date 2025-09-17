@@ -1,10 +1,13 @@
+use strum_macros::IntoStaticStr;
+
+/// Data pertaining to the element's physical properties
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct PhysicalData {
     pub(crate) boiling_point: Option<f64>,
     pub(crate) melting_point: Option<f64>,
     pub(crate) density: Option<f64>,
     pub(crate) molar_heat_capacity: Option<f64>,
-    pub(crate) phase_in_standard_conditions: &'static str,
+    pub(crate) phase_in_standard_conditions: Phase,
 }
 
 impl PhysicalData {
@@ -29,7 +32,7 @@ impl PhysicalData {
     }
 
     #[must_use]
-    pub const fn phase_in_standard_conditions(&self) -> &'static str {
+    pub const fn phase_in_standard_conditions(&self) -> Phase {
         self.phase_in_standard_conditions
     }
 
@@ -39,7 +42,7 @@ impl PhysicalData {
         melting_point: Option<f64>,
         density: Option<f64>,
         molar_heat_capacity: Option<f64>,
-        phase_in_standard_conditions: &'static str,
+        phase_in_standard_conditions: Phase,
     ) -> Self {
         Self {
             boiling_point,
@@ -47,6 +50,24 @@ impl PhysicalData {
             density,
             molar_heat_capacity,
             phase_in_standard_conditions,
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Hash, PartialEq, Eq, PartialOrd, Ord, IntoStaticStr)]
+pub enum Phase {
+    Solid,
+    Liquid,
+    Gas,
+}
+
+impl From<&str> for Phase {
+    fn from(value: &str) -> Self {
+        match value {
+            "Solid" => Self::Solid,
+            "Liquid" => Self::Liquid,
+            "Gas" => Self::Gas,
+            s => panic!("Expected Solid, Liquid, or Gas; found {s}"),
         }
     }
 }
