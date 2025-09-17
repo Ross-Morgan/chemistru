@@ -5,9 +5,9 @@ use crate::{
     Element,
     atomic::AtomicData,
     electron::{ElectronConfiguration, ElectronData, Suborbital},
-    misc::{Category, MiscData},
-    physical::PhysicalData,
-    table::TableData,
+    misc::MiscData,
+    physical::{Phase, PhysicalData},
+    table::{Category, TableData},
 };
 
 impl ToTokens for Element {
@@ -90,27 +90,21 @@ impl ToTokens for PhysicalData {
     }
 }
 
-impl ToTokens for TableData {
+impl ToTokens for Phase {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let (x, y) = self.position;
+        let variant_name: &'static str = self.into();
+        let variant_name = format_ident!("{variant_name}");
 
-        tokens.extend(quote! { crate::data::TableData::new((#x, #y)) });
+        tokens.extend(quote! { crate::data::Phase::#variant_name });
     }
 }
 
-impl ToTokens for MiscData {
+impl ToTokens for TableData {
     fn to_tokens(&self, tokens: &mut TokenStream) {
-        let appearance = quote_option(self.appearance);
+        let (x, y) = self.position;
         let category = self.category;
-        let discovered_by = quote_option(self.discovered_by);
-        let named_by = quote_option(self.named_by);
-        let spectral_img = quote_option(self.spectral_img);
-        let source = self.source;
-        let cpk_color = quote_option(self.cpk_color);
 
-        tokens.extend(quote! {
-            crate::data::MiscData::new(#appearance, #category, #discovered_by, #named_by, #spectral_img, #source, #cpk_color)
-        });
+        tokens.extend(quote! { crate::data::TableData::new((#x, #y), #category) });
     }
 }
 
@@ -120,6 +114,21 @@ impl ToTokens for Category {
         let variant_name = format_ident!("{variant_name}");
 
         tokens.extend(quote! { crate::data::Category::#variant_name });
+    }
+}
+
+impl ToTokens for MiscData {
+    fn to_tokens(&self, tokens: &mut TokenStream) {
+        let appearance = quote_option(self.appearance);
+        let discovered_by = quote_option(self.discovered_by);
+        let named_by = quote_option(self.named_by);
+        let spectral_img = quote_option(self.spectral_img);
+        let source = self.source;
+        let cpk_color = quote_option(self.cpk_color);
+
+        tokens.extend(quote! {
+            crate::data::MiscData::new(#appearance, #discovered_by, #named_by, #spectral_img, #source, #cpk_color)
+        });
     }
 }
 
