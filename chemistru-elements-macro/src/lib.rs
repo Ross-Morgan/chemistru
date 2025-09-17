@@ -9,8 +9,8 @@ use quote::{format_ident, quote};
 /// # Examples
 ///
 /// ```
-/// # use chemistru_elements_macro::generate_elements;
 /// mod elements {
+/// # use crate::generate_elements;
 ///     generate_elements!();
 /// }
 ///
