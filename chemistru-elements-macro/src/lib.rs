@@ -22,6 +22,6 @@ fn generate_const_init(element: &Element) -> TokenStream {
     let assignment_name = format_ident!("{}", element.name().to_uppercase());
 
     TokenStream::from(quote! {
-        const #assignment_name: &'static crate::Element = &#element;
+        pub const #assignment_name: &'static crate::Element = &#element;
     })
 }
