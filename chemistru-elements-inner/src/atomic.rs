@@ -1,5 +1,6 @@
 use intentional::CastFrom;
 
+/// Data pertaining to the element's subatomic composition
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct AtomicData {
     pub(crate) atomic_mass: f64,
