@@ -1,5 +1,13 @@
 //! # Chemistru Elements Inner
 //!
+//! ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Ross-Morgan/chemistru/elements-inner.yml?style=for-the-badge)
+//! ![docs.rs](https://img.shields.io/docsrs/chemistru-elements-inner?style=for-the-badge)
+//! ![Crates.io Version](https://img.shields.io/crates/v/chemistru-elements-inner?style=for-the-badge)
+//! ![Crates.io License](https://img.shields.io/crates/l/chemistru-elements-inner?style=for-the-badge)
+//! ![Crates.io Total Downloads](https://img.shields.io/crates/d/chemistru-elements-inner?style=for-the-badge)
+//! ![GitHub last commit](https://img.shields.io/github/last-commit/Ross-Morgan/chemistru?display_timestamp=author&style=for-the-badge)
+//! ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ross-Morgan/chemistru?style=for-the-badge)
+//!
 //! > Provides same functionality as [`chemistru-elements`](https://docs.rs/chemistru-elements), minus the macro stuff
 //!
 //! Provides a static vec of all the elements, with data loaded from a JSON file.
@@ -81,7 +89,9 @@ use crate::{
 use std::fmt::Display;
 use std::sync::LazyLock;
 
-/// [`LazyLock`]-wrapped vector of [`Element`]s
+/// Lazily-initialised vector of [`Element`]s
+/// 
+/// Can be preloaded with `chemistru_elements::utils::preload_elements`
 #[rustfmt::skip]
 pub static ELEMENTS: LazyLock<Vec<Element>> = LazyLock::new(|| {
     let raw_elements: Vec<RawElement> = serde_json::from_str(include_str!("../db.json")).expect("Failed to load json data");

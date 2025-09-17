@@ -1,17 +1,20 @@
 # Chemistru Elements
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Ross-Morgan/chemistru-elements/rust.yml?style=for-the-badge)
-![docs.rs](https://img.shields.io/docsrs/chemistru-elements?style=for-the-badge)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Ross-Morgan/chemistru/elements.yml?style=for-the-badge)
+
 ![Crates.io Version](https://img.shields.io/crates/v/chemistru-elements?style=for-the-badge)
 ![Crates.io License](https://img.shields.io/crates/l/chemistru-elements?style=for-the-badge)
+![Crates.io Size](https://img.shields.io/crates/size/chemistru-elements?style=for-the-badge)
 ![Crates.io Total Downloads](https://img.shields.io/crates/d/chemistru-elements?style=for-the-badge)
+![docs.rs](https://img.shields.io/docsrs/chemistru-elements?style=for-the-badge)
+
 ![GitHub last commit](https://img.shields.io/github/last-commit/Ross-Morgan/chemistru-elements?display_timestamp=author&style=for-the-badge)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/Ross-Morgan/chemistru-elements?style=for-the-badge)
 
-Provides one of two functions:
+Provides two functions:
 
-1. Provides a static vec of all the elements, with data loaded from a JSON file.
-2. Implements `ToTokens` from the `quote` library, allowing use with related chemistru crates.
+1. A static vec of all the elements, with data loaded from a JSON file.
+2. Constants for each element (requires `constants` feature).
 
 ## Static Vector
 
