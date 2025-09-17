@@ -2,7 +2,7 @@ extern crate proc_macro;
 
 use chemistru_elements_inner::{ELEMENTS, Element};
 use proc_macro::TokenStream;
-use quote::quote;
+use quote::{format_ident, quote};
 
 /// Generate a constant for each element
 ///
@@ -30,9 +30,9 @@ pub fn generate_elements(_: TokenStream) -> TokenStream {
 }
 
 fn generate_const_init(element: &Element) -> TokenStream {
-    let assignment_name = element.name().to_uppercase();
+    let assignment_name = format_ident!("{}", element.name().to_uppercase());
 
     TokenStream::from(quote! {
-        const #assignment_name: &'static ::chemistru_elements::Element = &'static #element;
+        const #assignment_name: &'static crate::Element = &#element;
     })
 }
