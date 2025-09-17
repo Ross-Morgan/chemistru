@@ -5,9 +5,9 @@ use crate::{
     Element,
     atomic::AtomicData,
     electron::{ElectronConfiguration, ElectronData},
-    misc::{Category, MiscData},
-    physical::PhysicalData,
-    table::TableData,
+    misc::MiscData,
+    physical::{Phase, PhysicalData},
+    table::{Category, TableData},
 };
 
 #[derive(Clone, Debug, Deserialize, PartialEq, PartialOrd)]
@@ -42,7 +42,11 @@ pub struct RawElement {
 
 impl RawElement {
     pub fn sanitise(self) -> Element {
-        let ionization_energies: Option<&'static [f64]> = if self.ionization_energies.is_empty() { None } else { Some(Box::new(self.ionization_energies).leak()) };
+        let ionization_energies: Option<&'static [f64]> = if self.ionization_energies.is_empty() {
+            None
+        } else {
+            Some(Box::new(self.ionization_energies).leak())
+        };
 
         let shells = Box::new(self.shells).leak();
 
@@ -57,7 +61,7 @@ impl RawElement {
             melting_point: self.melt,
             density: self.density,
             molar_heat_capacity: self.molar_heat,
-            phase_in_standard_conditions: self.phase,
+            phase_in_standard_conditions: Phase::from(self.phase),
         };
 
         let electron_data = ElectronData {
@@ -70,11 +74,11 @@ impl RawElement {
 
         let table_data = TableData {
             position: (self.xpos, self.ypos),
+            category: Category::from(self.category),
         };
 
         let misc_data = MiscData {
             appearance: self.appearance,
-            category: Category::from(self.category),
             discovered_by: self.discovered_by,
             named_by: self.named_by,
             source: self.source,
