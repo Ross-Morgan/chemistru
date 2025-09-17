@@ -44,31 +44,21 @@
 //! #### Without
 //!
 //! ```rust
-//! # fn operation_user_sees() {}
-//! # const ELEMENT: [(); 1] = [()];
-//! operation_user_sees();
-//!
+//! # const ELEMENTS: [(); 1] = [()];
 //! // May cause a tangible delay (interacting with io)
-//! let element = ELEMENT[0];
-//!
-//! operation_user_sees();
+//! let element = ELEMENTS[0];
 //! ```
 //!
 //! #### With
 //!
 //! ```rust
-//! # fn operation_user_sees() {}
-//! # const ELEMENT: [(); 1] = [()];
+//! # const ELEMENTS: [(); 1] = [()];
 //! # use chemistru_elements_inner as chemistru_elements;
 //! // Pre-initialise the vector of elements
 //! chemistru_elements::utils::preload_elements();
 //!
-//! operation_user_sees();
-//!
 //! // Virually no delay (trivial operation)
-//! let element = ELEMENT[0];
-//!
-//! operation_user_sees();
+//! let element = ELEMENTS[0];
 //! ```
 
 #[cfg(feature = "to_tokens")]
@@ -91,14 +81,14 @@ use crate::{
 use std::fmt::Display;
 use std::sync::LazyLock;
 
-/// `LazyLock`-wrapped vector of [`Element`]s
+/// [`LazyLock`]-wrapped vector of [`Element`]s
 #[rustfmt::skip]
 pub static ELEMENTS: LazyLock<Vec<Element>> = LazyLock::new(|| {
     let raw_elements: Vec<RawElement> = serde_json::from_str(include_str!("../db.json")).expect("Failed to load json data");
     raw_elements.iter().map(|e| e.clone().sanitise()).collect()
 });
 
-/// Basic elemental representation containing data about that element.
+/// Contains data about the element
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct Element {
     pub(crate) name: &'static str,
@@ -111,36 +101,43 @@ pub struct Element {
 }
 
 impl Element {
+    /// Element's name
     #[must_use]
     pub const fn name(&self) -> &'static str {
         self.name
     }
 
+    /// Element's symbol
     #[must_use]
     pub const fn symbol(&self) -> &'static str {
         self.symbol
     }
 
+    /// Data pertaining to the element's subatomic composition
     #[must_use]
     pub const fn atomic_data(&self) -> &AtomicData {
         &self.atomic_data
     }
 
+    /// Data pertaining to the element's energy levels
     #[must_use]
     pub const fn electron_data(&self) -> &ElectronData {
         &self.electron_data
     }
 
+    /// Data pertaining to the element's physical properties
     #[must_use]
     pub const fn physical_data(&self) -> &PhysicalData {
         &self.physical_data
     }
 
+    /// Data pertaining to the element's position in the periodic table
     #[must_use]
     pub const fn table_data(&self) -> &TableData {
         &self.table_data
     }
 
+    /// Other non-numerical data about the element
     #[must_use]
     pub const fn misc_data(&self) -> &MiscData {
         &self.misc_data
