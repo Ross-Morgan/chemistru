@@ -2,6 +2,7 @@ use std::fmt::Display;
 
 use const_panic::concat_panic;
 
+/// Data pertaining to the element's energy levels
 #[derive(Clone, Copy, Debug, PartialEq, PartialOrd)]
 pub struct ElectronData {
     pub(crate) configuration: ElectronConfiguration,
