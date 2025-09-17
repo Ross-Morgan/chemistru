@@ -66,10 +66,13 @@ impl From<&str> for ElectronConfiguration {
         let inner = value
             .split(' ')
             .map(|suborbital| {
-                let principal_quantum_number =
-                    suborbital.chars().nth(0).expect(
-                        "Suborbital in electron configuration missing principal quantum number",
-                    ) as u8;
+                let principal_quantum_number = suborbital
+                    .chars()
+                    .nth(0)
+                    .expect("Suborbital in electron configuration missing principal quantum number")
+                    .to_string()
+                    .parse::<u8>()
+                    .expect("Failed to parse principal quantum number from electron configuration as u8");
                 let azimuthal_letter = suborbital
                     .chars()
                     .nth(1)
@@ -112,6 +115,11 @@ impl Suborbital {
     }
 
     #[must_use]
+    pub const fn block(&self) -> char {
+        azimuthal_number_to_char(self.1)
+    }
+
+    #[must_use]
     pub const fn electron_number(&self) -> u8 {
         self.2
     }
@@ -124,6 +132,11 @@ impl Suborbital {
     #[must_use]
     pub fn to_string_nonstylized(&self) -> String {
         format!("{}{}{}", self.0, azimuthal_number_to_char(self.1), self.2)
+    }
+
+    #[must_use]
+    pub const fn new(pqn: u8, aqn: u8, en: u8) -> Self {
+        Self(pqn, aqn, en)
     }
 }
 
